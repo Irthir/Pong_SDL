@@ -13,7 +13,16 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="../SDL2-2.0.10/i686-w64-mingw32/include" />
 				</Compiler>
+				<Linker>
+					<Add option="-lmingw32" />
+					<Add library="../SDL2-2.0.10/i686-w64-mingw32/lib/libSDL2main.a" />
+					<Add library="../SDL2-2.0.10/i686-w64-mingw32/lib/libSDL2.dll.a" />
+					<Add library="../SDL2-2.0.10/i686-w64-mingw32/lib/libSDL2_image.a" />
+					<Add library="../SDL2-2.0.10/i686-w64-mingw32/lib/libSDL2_image.dll.a" />
+					<Add directory="../SDL2-2.0.10/i686-w64-mingw32/lib" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/Pong" prefix_auto="1" extension_auto="1" />
@@ -22,18 +31,35 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="../SDL2-2.0.10/i686-w64-mingw32/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add option="-lmingw32" />
+					<Add library="../SDL2-2.0.10/i686-w64-mingw32/lib/libSDL2main.a" />
+					<Add library="../SDL2-2.0.10/i686-w64-mingw32/lib/libSDL2.dll.a" />
+					<Add library="../SDL2-2.0.10/i686-w64-mingw32/lib/libSDL2_image.a" />
+					<Add library="../SDL2-2.0.10/i686-w64-mingw32/lib/libSDL2_image.dll.a" />
+					<Add directory="../SDL2-2.0.10/i686-w64-mingw32/lib" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="../SDL2-2.0.10/i686-w64-mingw32/include" />
 		</Compiler>
+		<Linker>
+			<Add option="-lmingw32" />
+			<Add library="../SDL2-2.0.10/i686-w64-mingw32/lib/libSDL2main.a" />
+			<Add library="../SDL2-2.0.10/i686-w64-mingw32/lib/libSDL2.dll.a" />
+			<Add library="../SDL2-2.0.10/i686-w64-mingw32/lib/libSDL2_image.a" />
+			<Add library="../SDL2-2.0.10/i686-w64-mingw32/lib/libSDL2_image.dll.a" />
+			<Add directory="../SDL2-2.0.10/i686-w64-mingw32/lib" />
+		</Linker>
 		<Unit filename="SDLaffichage.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="SDLaffichage.h" />
 		<Unit filename="SDLmanager.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -41,39 +67,54 @@
 		<Unit filename="SDLtexte.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="SDLtexte.h" />
 		<Unit filename="balle.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="balle.h" />
 		<Unit filename="cercle.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="cercle.h" />
 		<Unit filename="gamemanager.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="gamemanager.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="netmanager.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="netmanager.h" />
 		<Unit filename="playercontroller.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="playercontroller.h" />
 		<Unit filename="point.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="point.h" />
 		<Unit filename="raquette.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="raquette.h" />
 		<Unit filename="rectangle.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="rectangle.h" />
 		<Unit filename="scoremanager.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="scoremanager.h" />
 		<Unit filename="terrain.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="terrain.h" />
+		<Unit filename="test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="test.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

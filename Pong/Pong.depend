@@ -12,9 +12,10 @@
 1588168482 source:c:\users\desktop\pong_sdl\pong\gamemanager.c
 	"gamemanager.h"
 
-1514144174 source:c:\users\desktop\pong_sdl\pong\main.c
+1588170755 source:c:\users\desktop\pong_sdl\pong\main.c
 	<stdio.h>
 	<stdlib.h>
+	"SDLmanager.h"
 
 1588168492 source:c:\users\desktop\pong_sdl\pong\netmanager.c
 	"netmanager.h"
@@ -22,7 +23,8 @@
 1588168525 source:c:\users\desktop\pong_sdl\pong\playercontroller.c
 	"playercontroller.h"
 
-1588167259 source:c:\users\desktop\pong_sdl\pong\point.c
+1588168625 source:c:\users\desktop\pong_sdl\pong\point.c
+	"point.h"
 
 1588168540 source:c:\users\desktop\pong_sdl\pong\raquette.c
 	"raquette.h"
@@ -33,14 +35,16 @@
 1588168556 source:c:\users\desktop\pong_sdl\pong\scoremanager.c
 	"scoremanager.h"
 
-1588167327 source:c:\users\desktop\pong_sdl\pong\terrain.c
+1588168601 source:c:\users\desktop\pong_sdl\pong\terrain.c
+	"terrain.h"
 
-1588167323 source:c:\users\desktop\pong_sdl\pong\sdltexte.c
+1588168592 source:c:\users\desktop\pong_sdl\pong\sdltexte.c
+	"SDLtexte.h"
 
-1588167131 source:c:\users\desktop\pong_sdl\pong\sdlaffichage.c
-	"SDLmanager.h"
+1588168582 source:c:\users\desktop\pong_sdl\pong\sdlaffichage.c
+	"SDLaffichage.h"
 
-1588167211 c:\users\desktop\pong_sdl\pong\sdlmanager.h
+1588170918 c:\users\desktop\pong_sdl\pong\sdlmanager.h
 	"SDL2/SDL.h"
 	<stdio.h>
 	<stdlib.h>
@@ -410,4 +414,18 @@
 1588168122 c:\users\desktop\pong_sdl\pong\rectangle.h
 
 1588168149 c:\users\desktop\pong_sdl\pong\scoremanager.h
+
+1588167811 c:\users\desktop\pong_sdl\pong\point.h
+
+1588168319 c:\users\desktop\pong_sdl\pong\sdlaffichage.h
+	"SDLmanager.h"
+
+1588168347 c:\users\desktop\pong_sdl\pong\sdltexte.h
+
+1588168369 c:\users\desktop\pong_sdl\pong\terrain.h
+
+1588170169 source:c:\users\desktop\pong_sdl\pong\test.c
+	"test.h"
+
+1588170158 c:\users\desktop\pong_sdl\pong\test.h
 

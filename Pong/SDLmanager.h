@@ -6,8 +6,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define WINDOWH 900
-#define WINDOWL 1200
+#define WINDOWH 700
+#define WINDOWL 1400
 
 typedef struct SDLManager
 {
