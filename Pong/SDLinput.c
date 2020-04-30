@@ -2,6 +2,9 @@
 
 
 int inputSDL(SDL_Event Evenement,int nFonctionnement)
+//BUT : Gérer les évènements du jeu.
+//ENTREE : Les évènements et les paramètres à modifier et à renvoyer en fonction des évènements.
+//SORTIE : Les paramètres modifiés et renvoyés en fonction des évènements.
 {
     while (SDL_PollEvent(&Evenement)) //Gestion des évènements.
     {
@@ -11,7 +14,6 @@ int inputSDL(SDL_Event Evenement,int nFonctionnement)
                 switch (Evenement.key.keysym.sym)
                 {
                     case SDLK_ESCAPE :
-                        printf("Touche echap pressee fin du jeu.\n");
                         nFonctionnement=0;
                         break;
                     default :

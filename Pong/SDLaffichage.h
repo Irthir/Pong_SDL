@@ -4,7 +4,7 @@
 
 #include "SDLmanager.h"
 
-extern void nettoieEcran(SDLManager *pManager);
+extern void nettoieRendu(SDLManager *pManager);
 extern void affichage(SDLManager *pManager);
 
 #endif

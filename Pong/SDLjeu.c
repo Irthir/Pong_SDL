@@ -2,6 +2,9 @@
 
 
 int sdljeu()
+//BUT : Gérer les appels de l'affichage et des inputs SDL tout au long du fonctionnement du jeu.
+//ENTREE : Les évènements SDL.
+//SORTIE : Les divers appels en fonction des évènements.
 {
     SDLManager *pManager=malloc(sizeof(SDLManager));
     if (initSDLManager(pManager)==1)
@@ -26,6 +29,7 @@ int sdljeu()
                 nFonctionnement=inputSDL(Evenement,nFonctionnement);
             }
         }
+        printf("Fin du jeu.\n");
         finSDLManager(pManager);
         return 0;
     }

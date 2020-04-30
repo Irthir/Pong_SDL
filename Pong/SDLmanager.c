@@ -1,6 +1,9 @@
 #include "SDLmanager.h"
 
 int initSDLManager(SDLManager *pManager)
+//BUT : Initialiser le manager SDL comprenant le pointeur de fenêtre et celui du rendu.
+//ENTREE : Le manager à initialisé, et les dimensions de la fenêtre en constantes pour le moment.
+//SORTIE : La fenêtre créée et le manager initialisé.
 {
     if(SDL_Init(SDL_INIT_EVERYTHING)>=0)//initialisation de SDL
     {
@@ -22,6 +25,9 @@ int initSDLManager(SDLManager *pManager)
 }
 
 int finSDLManager(SDLManager *pManager)
+//BUT : Fermer le manager ainsi que la fenêtre.
+//ENTREE : Le manager.
+//SORTIE : Le manager fermé et vidé et la fenêtre de jeu fermée.
 {
     if(pManager!=NULL)
     {
