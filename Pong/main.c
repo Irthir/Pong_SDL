@@ -1,18 +1,10 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "SDLmanager.h"
+#include "SDLjeu.h"
 
 int main(int argc, char *argv[])
 {
     printf("Bonjour.\n");
 
-    SDLManager *pManager=malloc(sizeof(SDLManager));
-    if (initSDLManager(pManager)==1)
-    {
-        SDL_Delay(4000);
-        finSDLManager(pManager);
-    }
-    else
+    if (sdljeu()==1)
     {
         printf("Erreur dans le lancement de la SDL.\n");
     }

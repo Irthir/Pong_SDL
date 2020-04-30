@@ -60,6 +60,14 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="SDLaffichage.h" />
+		<Unit filename="SDLinput.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="SDLinput.h" />
+		<Unit filename="SDLjeu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="SDLjeu.h" />
 		<Unit filename="SDLmanager.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -87,10 +95,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="netmanager.h" />
-		<Unit filename="playercontroller.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="playercontroller.h" />
 		<Unit filename="point.c">
 			<Option compilerVar="CC" />
 		</Unit>
