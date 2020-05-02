@@ -1,6 +1,6 @@
 #include "SDLjeu.h"
 
-int main(int argc, char *argv[])
+int main(int argc, char *argv[]) //Prototype du main obligatoire pour la SDL.
 {
     printf("Bonjour.\n");
 
