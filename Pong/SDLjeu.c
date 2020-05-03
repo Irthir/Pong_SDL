@@ -20,9 +20,9 @@ int sdljeu()
         SDL_Event Evenement;
 
 
-
-        tBalle bBalle=CreatBalle(CreatCercle(CreatPoint(50,50),50),CreatVecteur2D(CreatSegment(CreatPoint(0,0),CreatPoint(0,0)),CreatSegment(CreatPoint(0,0),CreatPoint(0,0))),pManager);
-        SDL_Rect destRect;
+        tBalle bBalle=CreatBalle(CreatCercle(CreatPoint(200,200),50),CreatVecteur2D(CreatSegment(CreatPoint(0,0),CreatPoint(0,0)),CreatSegment(CreatPoint(0,0),CreatPoint(0,0))),pManager);
+        tRaquette rRaquetteJ1=CreatRaquette(CreatRect(CreatPoint(0,0),200,40),pManager,1);
+        tRaquette rRaquetteJ2=CreatRaquette(CreatRect(CreatPoint(400,0),200,40),pManager,2);
 
         while (nFonctionnement==1)
         {
@@ -35,11 +35,9 @@ int sdljeu()
                 nTempsPrecedent = nTempsActuel;
                 nFonctionnement=inputSDL(Evenement,nFonctionnement);
 
-                destRect.h=bBalle.cCercle.nRayon*2;
-                destRect.w=bBalle.cCercle.nRayon*2;
-                destRect.x=bBalle.cCercle.pCentre.nX;
-                destRect.y=bBalle.cCercle.pCentre.nY;
-                SDL_RenderCopy(pManager->pRenderer,bBalle.pTexture,NULL,&destRect);
+                AfficheBalle(bBalle,pManager);
+                AfficheRaquette(rRaquetteJ1,pManager);
+                AfficheRaquette(rRaquetteJ2,pManager);
 
                 SDL_RenderPresent(pManager->pRenderer);
             }
@@ -52,4 +50,27 @@ int sdljeu()
     {
         return 1;
     }
+}
+
+
+void AfficheBalle(tBalle bBalle, SDLManager *pManager)
+{
+    SDL_Rect destRect;
+
+    destRect.h=bBalle.cCercle.nRayon*2;
+    destRect.w=bBalle.cCercle.nRayon*2;
+    destRect.x=bBalle.cCercle.pCentre.nX;
+    destRect.y=bBalle.cCercle.pCentre.nY;
+    SDL_RenderCopy(pManager->pRenderer,bBalle.pTexture,NULL,&destRect);
+}
+
+void AfficheRaquette(tRaquette rRaquette, SDLManager *pManager)
+{
+    SDL_Rect destRect;
+
+    destRect.h=rRaquette.rRectangle.nHauteur;
+    destRect.w=rRaquette.rRectangle.nLargeur;
+    destRect.x=rRaquette.rRectangle.pOrigine.nX;
+    destRect.y=rRaquette.rRectangle.pOrigine.nY;
+    SDL_RenderCopy(pManager->pRenderer,rRaquette.pTexture,NULL,&destRect);
 }

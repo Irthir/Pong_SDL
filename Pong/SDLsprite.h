@@ -10,7 +10,7 @@
 SDL_Surface *AppliquerImageSurface(const char* sChemin);
 SDL_Texture *TextureSprites(SDLManager *pManager);
 
-//void AfficheBalle(tBalle bBalle,SDLManager *pManager);
 SDL_Texture *CreatTextureBalle(SDLManager *pManager);
+SDL_Texture *CreatTextureRaquette(SDLManager *pManager,int nJoueur);
 
 #endif

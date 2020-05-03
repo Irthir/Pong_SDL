@@ -76,6 +76,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="SDLmanager.h" />
+		<Unit filename="SDLraquette.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="SDLraquette.h" />
 		<Unit filename="SDLsprite.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -84,6 +88,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="SDLtexte.h" />
+		<Unit filename="cercle.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cercle.h" />
 		<Unit filename="gamemanager.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -99,10 +107,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="point.h" />
-		<Unit filename="raquette.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="raquette.h" />
 		<Unit filename="rectangle.c">
 			<Option compilerVar="CC" />
 		</Unit>

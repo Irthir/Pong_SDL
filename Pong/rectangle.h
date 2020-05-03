@@ -12,4 +12,6 @@ typedef struct tRect
     int nLargeur;
 }tRect;
 
+tRect CreatRect(tPoint pOrigine,int nHauteur,int nLargeur);
+
 #endif

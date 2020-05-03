@@ -4,7 +4,9 @@ const char* CSPRITE = "Assets/sprites.png";
 const int NBTILELARGEUR=5;
 const int NBTILEHAUTEUR=3;
 const int XBALLE=2;
-const int YBALLE=0;
+const int HAUTEURRAQUETTE=3;
+const int XRAQUETTEJ1=0;
+const int XRAQUETTEJ2=1;
 
 SDL_Surface *AppliquerImageSurface(const char* sChemin)
 //BUT : Appliquer une image dans une surface grâce à la SDL_Image.
@@ -38,28 +40,6 @@ SDL_Texture *TextureSprites(SDLManager *pManager)
     return pTexture;
 }
 
-/*
-void AfficheBalle(tBalle bBalle,SDLManager *pManager)
-{
-    SDL_Texture *pTexture=TextureSprites(pManager);
-    int nW=0;
-    int nH=0;
-    SDL_QueryTexture(pTexture,NULL,NULL,&nW,&nH);
-    SDL_Rect sourceRect={0,0,0,0};
-    sourceRect.w=nW/NBTILELARGEUR;
-    sourceRect.h=nH/NBTILEHAUTEUR;
-    sourceRect.x=(XBALLE/NBTILELARGEUR)*nW;
-    sourceRect.y=(YBALLE/NBTILEHAUTEUR)*nH;
-
-    SDL_Rect destRect=sourceRect;
-    destRect.x=bBalle.pPosition.nX;
-    destRect.y=bBalle.pPosition.nY;
-
-    SDL_RenderCopy(pManager->pRenderer,pTexture,&sourceRect,&destRect);
-
-    free(pTexture);
-}*/
-
 SDL_Texture *CreatTextureBalle(SDLManager *pManager)
 {
     SDL_Texture *pTexture=TextureSprites(pManager);
@@ -70,7 +50,7 @@ SDL_Texture *CreatTextureBalle(SDLManager *pManager)
     sourceRect.w=div(nW,NBTILELARGEUR).quot;
     sourceRect.h=div(nH,NBTILEHAUTEUR).quot;
     sourceRect.x=(nW/NBTILELARGEUR)*XBALLE;
-    sourceRect.y=(nH/NBTILEHAUTEUR)*YBALLE;
+    sourceRect.y=0;
 
     SDL_Texture *pBalleTexture=SDL_CreateTexture(pManager->pRenderer,SDL_PIXELFORMAT_RGBA8888,SDL_TEXTUREACCESS_TARGET,sourceRect.w,sourceRect.h);
     SDL_SetRenderTarget(pManager->pRenderer,pBalleTexture);
@@ -80,4 +60,33 @@ SDL_Texture *CreatTextureBalle(SDLManager *pManager)
     free(pTexture);
 
     return pBalleTexture;
+}
+
+SDL_Texture *CreatTextureRaquette(SDLManager *pManager,int nJoueur)
+{
+    SDL_Texture *pTexture=TextureSprites(pManager);
+    int nW=0;
+    int nH=0;
+    SDL_QueryTexture(pTexture,NULL,NULL,&nW,&nH);
+    SDL_Rect sourceRect={0,0,0,0};
+    sourceRect.w=div(nW,NBTILELARGEUR).quot;
+    sourceRect.h=div(nH,NBTILEHAUTEUR).quot*HAUTEURRAQUETTE;
+    if(nJoueur==1)
+    {
+        sourceRect.x=(nW/NBTILELARGEUR)*XRAQUETTEJ1;
+    }
+    else
+    {
+        sourceRect.x=(nW/NBTILELARGEUR)*XRAQUETTEJ2;
+    }
+    sourceRect.y=0;
+
+    SDL_Texture *pRaquetteTexture=SDL_CreateTexture(pManager->pRenderer,SDL_PIXELFORMAT_RGBA8888,SDL_TEXTUREACCESS_TARGET,sourceRect.w,sourceRect.h);
+    SDL_SetRenderTarget(pManager->pRenderer,pRaquetteTexture);
+    SDL_RenderCopy(pManager->pRenderer,pTexture,&sourceRect,NULL);
+
+    SDL_SetRenderTarget(pManager->pRenderer,NULL);
+    free(pTexture);
+
+    return pRaquetteTexture;
 }
