@@ -1,6 +1,5 @@
 #include "SDLjeu.h"
 
-
 int sdljeu()
 //BUT : Gérer les appels de l'affichage et des inputs SDL tout au long du fonctionnement du jeu.
 //ENTREE : Les évènements SDL.
@@ -20,9 +19,20 @@ int sdljeu()
         SDL_Event Evenement;
 
 
-        tBalle bBalle=CreatBalle(CreatCercle(CreatPoint(200,200),50),CreatVecteur2D(CreatSegment(CreatPoint(0,0),CreatPoint(0,0)),CreatSegment(CreatPoint(0,0),CreatPoint(0,0))),pManager);
-        tRaquette rRaquetteJ1=CreatRaquette(CreatRect(CreatPoint(0,0),200,40),pManager,1);
-        tRaquette rRaquetteJ2=CreatRaquette(CreatRect(CreatPoint(400,0),200,40),pManager,2);
+        SDL_Rect rRenderRect;
+        rRenderRect.x=0;
+        rRenderRect.y=0;
+        SDL_GetRendererOutputSize(pManager->pRenderer,&rRenderRect.w,&rRenderRect.h);
+
+        //On veut que la raquette fasse 1/40 de l'écran en largeur et 1/4 de l'écran en hauteur
+        const int LARGEURRAQUETTE = rRenderRect.w/40;
+        const int HAUTEURRAQUETTE = rRenderRect.h/4;
+        //On veut que la balle soit comprise dans un carré qui a pour côté 1/40 de la largeur de l'écran.
+        const int DIAMETTREBALLE = rRenderRect.w/40;
+
+        tBalle bBalle=CreatBalle(CreatCercle(CreatPoint(rRenderRect.w/2,rRenderRect.h/2),DIAMETTREBALLE/2),CreatVecteur2D(CreatSegment(CreatPoint(0,0),CreatPoint(0,0)),CreatSegment(CreatPoint(0,0),CreatPoint(0,0))),pManager);
+        tRaquette rRaquetteJ1=CreatRaquette(CreatRect(CreatPoint(0,(rRenderRect.h-HAUTEURRAQUETTE)/2),HAUTEURRAQUETTE,LARGEURRAQUETTE),pManager,1);
+        tRaquette rRaquetteJ2=CreatRaquette(CreatRect(CreatPoint(rRenderRect.w-LARGEURRAQUETTE,(rRenderRect.h-HAUTEURRAQUETTE)/2),HAUTEURRAQUETTE,LARGEURRAQUETTE),pManager,2);
 
         while (nFonctionnement==1)
         {
