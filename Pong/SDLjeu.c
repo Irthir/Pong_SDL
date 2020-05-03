@@ -30,6 +30,9 @@ int sdljeu()
         //On veut que la balle soit comprise dans un carré qui a pour côté 1/40 de la largeur de l'écran.
         const int DIAMETTREBALLE = rRenderRect.w/40;
 
+        int nScoreJ1=0;
+        int nScoreJ2=0;
+
         tBalle bBalle=CreatBalle(CreatCercle(CreatPoint(rRenderRect.w/2,rRenderRect.h/2),DIAMETTREBALLE/2),CreatVecteur2D(-3,3),pManager);
         tRaquette rRaquetteJ1=CreatRaquette(CreatRect(CreatPoint(0,(rRenderRect.h-HAUTEURRAQUETTE)/2),HAUTEURRAQUETTE,LARGEURRAQUETTE),pManager,1);
         tRaquette rRaquetteJ2=CreatRaquette(CreatRect(CreatPoint(rRenderRect.w-LARGEURRAQUETTE,(rRenderRect.h-HAUTEURRAQUETTE)/2),HAUTEURRAQUETTE,LARGEURRAQUETTE),pManager,2);
@@ -46,6 +49,7 @@ int sdljeu()
                 nFonctionnement=inputSDL(Evenement,nFonctionnement,&rRaquetteJ1);
 
                 CollisionMurJoueur(&rRaquetteJ1,rRenderRect);
+                MouvementIA(&rRaquetteJ2,bBalle);
                 CollisionMurJoueur(&rRaquetteJ2,rRenderRect);
 
                 MouvementBalle(&bBalle);
@@ -55,6 +59,21 @@ int sdljeu()
                 if(Collision(bBalle,rRaquetteJ1)==1 || Collision(bBalle,rRaquetteJ2)==1)
                 {
                      bBalle.vDirection.nDirectionX=bBalle.vDirection.nDirectionX*-1;
+                }
+
+                if (bBalle.cCercle.pCentre.nX+(bBalle.cCercle.nRayon*2) > rRenderRect.w)
+                {
+                    nScoreJ1++;
+                    printf("Score J1 : %d.\n",nScoreJ1);
+                    printf("Score J2 : %d.\n",nScoreJ2);
+                    ReapparitionBalle(&bBalle,1,rRenderRect);
+                }
+                if (bBalle.cCercle.pCentre.nX+(bBalle.cCercle.nRayon*2) < 0)
+                {
+                    nScoreJ2++;
+                    printf("Score J1 : %d.\n",nScoreJ1);
+                    printf("Score J2 : %d.\n",nScoreJ2);
+                    ReapparitionBalle(&bBalle,2,rRenderRect);
                 }
 
 
@@ -150,4 +169,28 @@ void CollisionMurBalle (tBalle *bBalle,SDL_Rect rRenderRect)
         bBalle->cCercle.pCentre.nY=0+bBalle->cCercle.nRayon;
         bBalle->vDirection.nDirectionY=bBalle->vDirection.nDirectionY*-1;
     }
+}
+
+void MouvementIA(tRaquette *rRaquette,tBalle bBalle)
+{
+    const int VITESSEIA=1;
+    if (bBalle.cCercle.pCentre.nY > rRaquette->rRectangle.pOrigine.nY - (rRaquette->rRectangle.nHauteur/2))
+    {
+        rRaquette->rRectangle.pOrigine.nY=rRaquette->rRectangle.pOrigine.nY+VITESSEIA;
+    }
+    if (bBalle.cCercle.pCentre.nY < rRaquette->rRectangle.pOrigine.nY - (rRaquette->rRectangle.nHauteur/2))
+    {
+        rRaquette->rRectangle.pOrigine.nY=rRaquette->rRectangle.pOrigine.nY-VITESSEIA;
+    }
+}
+
+void ReapparitionBalle(tBalle *bBalle, int nJoueur, SDL_Rect rRenderRect)
+{
+    bBalle->cCercle.pCentre.nX=rRenderRect.w/2;
+    bBalle->cCercle.pCentre.nY=rRenderRect.h/2;
+    bBalle->vDirection.nDirectionY=-3;
+    if (nJoueur==1)
+        bBalle->vDirection.nDirectionX=-3;
+    else
+        bBalle->vDirection.nDirectionX=3;
 }
