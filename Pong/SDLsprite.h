@@ -7,15 +7,10 @@
 #include "SDLballe.h"
 
 
-const char* CSPRITE = "Assets/sprites.png";
-const int NBTILELARGEUR=5;
-const int NBTILEHAUTEUR=3;
-const int XBALLE=2;
-const int YBALLE=0;
-
 SDL_Surface *AppliquerImageSurface(const char* sChemin);
 SDL_Texture *TextureSprites(SDLManager *pManager);
 
-void AfficheBalle(tBalle bBalle,SDLManager *pManager);
+//void AfficheBalle(tBalle bBalle,SDLManager *pManager);
+SDL_Texture *CreatTextureBalle(SDLManager *pManager);
 
 #endif

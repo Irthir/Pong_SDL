@@ -1,5 +1,10 @@
 #include "SDLsprite.h"
 
+const char* CSPRITE = "Assets/sprites.png";
+const int NBTILELARGEUR=5;
+const int NBTILEHAUTEUR=3;
+const int XBALLE=2;
+const int YBALLE=0;
 
 SDL_Surface *AppliquerImageSurface(const char* sChemin)
 //BUT : Appliquer une image dans une surface grâce à la SDL_Image.
@@ -33,7 +38,7 @@ SDL_Texture *TextureSprites(SDLManager *pManager)
     return pTexture;
 }
 
-
+/*
 void AfficheBalle(tBalle bBalle,SDLManager *pManager)
 {
     SDL_Texture *pTexture=TextureSprites(pManager);
@@ -53,4 +58,26 @@ void AfficheBalle(tBalle bBalle,SDLManager *pManager)
     SDL_RenderCopy(pManager->pRenderer,pTexture,&sourceRect,&destRect);
 
     free(pTexture);
+}*/
+
+SDL_Texture *CreatTextureBalle(SDLManager *pManager)
+{
+    SDL_Texture *pTexture=TextureSprites(pManager);
+    int nW=0;
+    int nH=0;
+    SDL_QueryTexture(pTexture,NULL,NULL,&nW,&nH);
+    SDL_Rect sourceRect={0,0,0,0};
+    sourceRect.w=div(nW,NBTILELARGEUR).quot;
+    sourceRect.h=div(nH,NBTILEHAUTEUR).quot;
+    sourceRect.x=(nW/NBTILELARGEUR)*XBALLE;
+    sourceRect.y=(nH/NBTILEHAUTEUR)*YBALLE;
+
+    SDL_Texture *pBalleTexture=SDL_CreateTexture(pManager->pRenderer,SDL_PIXELFORMAT_RGBA8888,SDL_TEXTUREACCESS_TARGET,sourceRect.w,sourceRect.h);
+    SDL_SetRenderTarget(pManager->pRenderer,pBalleTexture);
+    SDL_RenderCopy(pManager->pRenderer,pTexture,&sourceRect,NULL);
+
+    SDL_SetRenderTarget(pManager->pRenderer,NULL);
+    free(pTexture);
+
+    return pBalleTexture;
 }

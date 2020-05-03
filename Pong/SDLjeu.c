@@ -21,7 +21,8 @@ int sdljeu()
 
 
 
-        tBalle bBalle=CreatBalle(CreatPoint(50,50),CreatVecteur2D(CreatSegment(CreatPoint(0,0),CreatPoint(0,0)),CreatSegment(CreatPoint(0,0),CreatPoint(0,0))));
+        tBalle bBalle=CreatBalle(CreatCercle(CreatPoint(50,50),50),CreatVecteur2D(CreatSegment(CreatPoint(0,0),CreatPoint(0,0)),CreatSegment(CreatPoint(0,0),CreatPoint(0,0))),pManager);
+        SDL_Rect destRect;
 
         while (nFonctionnement==1)
         {
@@ -34,7 +35,11 @@ int sdljeu()
                 nTempsPrecedent = nTempsActuel;
                 nFonctionnement=inputSDL(Evenement,nFonctionnement);
 
-                AfficheBalle(bBalle,pManager);
+                destRect.h=bBalle.cCercle.nRayon*2;
+                destRect.w=bBalle.cCercle.nRayon*2;
+                destRect.x=bBalle.cCercle.pCentre.nX;
+                destRect.y=bBalle.cCercle.pCentre.nY;
+                SDL_RenderCopy(pManager->pRenderer,bBalle.pTexture,NULL,&destRect);
 
                 SDL_RenderPresent(pManager->pRenderer);
             }

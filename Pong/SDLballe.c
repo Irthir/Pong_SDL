@@ -1,10 +1,11 @@
 #include "SDLballe.h"
 
-tBalle CreatBalle(tPoint pPosition,tVecteur2D vDirection)
+tBalle CreatBalle(tCercle cCercle,tVecteur2D vDirection,SDLManager *pManager)
 {
     tBalle bBalle;
-    bBalle.pPosition=pPosition;
+    bBalle.cCercle=cCercle;
     bBalle.vDirection=vDirection;
+    bBalle.pTexture=CreatTextureBalle(pManager);
     return bBalle;
 }
 

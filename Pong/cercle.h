@@ -2,7 +2,7 @@
 #define CERCLE_H_INCLUDED
 #pragma once
 
-#include "../point.h"
+#include "point.h"
 
 typedef struct tCercle
 {
