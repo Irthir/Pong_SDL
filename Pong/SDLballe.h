@@ -7,9 +7,10 @@
 
 typedef struct tBalle
 {
-    int sprite;
     tPoint pPosition;
     tVecteur2D vDirection;
 }tBalle;
+
+tBalle CreatBalle(tPoint pPosition,tVecteur2D vDirection);
 
 #endif

@@ -19,14 +19,24 @@ int sdljeu()
         int nFonctionnement=1;
         SDL_Event Evenement;
 
+
+
+        tBalle bBalle=CreatBalle(CreatPoint(50,50),CreatVecteur2D(CreatSegment(CreatPoint(0,0),CreatPoint(0,0)),CreatSegment(CreatPoint(0,0),CreatPoint(0,0))));
+
         while (nFonctionnement==1)
         {
             nTempsActuel = SDL_GetTicks(); //SDL_GetTicks renvoie le nombre de millisecondes depuis que la SDL a été initialisé.
             if (nTempsActuel > nTempsPrecedent + nDeltaTime)
             //On effectue nos actions à chaque frame.
             {
+                SDL_RenderClear(pManager->pRenderer);
+
                 nTempsPrecedent = nTempsActuel;
                 nFonctionnement=inputSDL(Evenement,nFonctionnement);
+
+                AfficheBalle(bBalle,pManager);
+
+                SDL_RenderPresent(pManager->pRenderer);
             }
         }
         printf("Fin du jeu.\n");

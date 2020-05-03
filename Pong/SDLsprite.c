@@ -32,3 +32,25 @@ SDL_Texture *TextureSprites(SDLManager *pManager)
     free(pSurface);
     return pTexture;
 }
+
+
+void AfficheBalle(tBalle bBalle,SDLManager *pManager)
+{
+    SDL_Texture *pTexture=TextureSprites(pManager);
+    int nW=0;
+    int nH=0;
+    SDL_QueryTexture(pTexture,NULL,NULL,&nW,&nH);
+    SDL_Rect sourceRect={0,0,0,0};
+    sourceRect.w=nW/NBTILELARGEUR;
+    sourceRect.h=nH/NBTILEHAUTEUR;
+    sourceRect.x=(XBALLE/NBTILELARGEUR)*nW;
+    sourceRect.y=(YBALLE/NBTILEHAUTEUR)*nH;
+
+    SDL_Rect destRect=sourceRect;
+    destRect.x=bBalle.pPosition.nX;
+    destRect.y=bBalle.pPosition.nY;
+
+    SDL_RenderCopy(pManager->pRenderer,pTexture,&sourceRect,&destRect);
+
+    free(pTexture);
+}

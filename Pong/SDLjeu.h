@@ -4,6 +4,8 @@
 
 #include "SDLmanager.h"
 #include "SDLinput.h"
+#include "SDLballe.h"
+#include "SDLsprite.h"
 
 extern int sdljeu();
 
