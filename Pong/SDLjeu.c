@@ -8,6 +8,11 @@ int sdljeu()
     SDLManager *pManager=malloc(sizeof(SDLManager));
     if (initSDLManager(pManager)==1)
     {
+        if(TTF_Init()<0)
+        {
+            printf("Erreur : %s\n",SDL_GetError());
+        }
+
         /*Déclaration des variables de rafraichissement.*/
         const int FPS=60; //On veut 60 FPS.
         unsigned long int nTempsActuel=0;
@@ -33,7 +38,7 @@ int sdljeu()
         int nScoreJ1=0;
         int nScoreJ2=0;
 
-        tBalle bBalle=CreatBalle(CreatCercle(CreatPoint(rRenderRect.w/2,rRenderRect.h/2),DIAMETTREBALLE/2),CreatVecteur2D(-3,3),pManager);
+        tBalle bBalle=CreatBalle(CreatCercle(CreatPoint(rRenderRect.w/2,rRenderRect.h/2),DIAMETTREBALLE/2),CreatVecteur2D(-4,4),pManager);
         tRaquette rRaquetteJ1=CreatRaquette(CreatRect(CreatPoint(0,(rRenderRect.h-HAUTEURRAQUETTE)/2),HAUTEURRAQUETTE,LARGEURRAQUETTE),pManager,1);
         tRaquette rRaquetteJ2=CreatRaquette(CreatRect(CreatPoint(rRenderRect.w-LARGEURRAQUETTE,(rRenderRect.h-HAUTEURRAQUETTE)/2),HAUTEURRAQUETTE,LARGEURRAQUETTE),pManager,2);
 
@@ -58,7 +63,14 @@ int sdljeu()
 
                 if(Collision(bBalle,rRaquetteJ1)==1 || Collision(bBalle,rRaquetteJ2)==1)
                 {
-                     bBalle.vDirection.nDirectionX=bBalle.vDirection.nDirectionX*-1;
+                    if (bBalle.vDirection.nDirectionX>=0)
+                    {
+                        bBalle.vDirection.nDirectionX=(bBalle.vDirection.nDirectionX+1)*-1;
+                    }
+                    else
+                    {
+                        bBalle.vDirection.nDirectionX=(bBalle.vDirection.nDirectionX-1)*-1;
+                    }
                 }
 
                 if (bBalle.cCercle.pCentre.nX+(bBalle.cCercle.nRayon*2) > rRenderRect.w)
@@ -80,6 +92,7 @@ int sdljeu()
                 AfficheRaquette(rRaquetteJ1,pManager);
                 AfficheRaquette(rRaquetteJ2,pManager);
                 AfficheBalle(bBalle,pManager);
+                AfficheScore(pManager,nScoreJ1,nScoreJ2,rRenderRect);
 
                 SDL_RenderPresent(pManager->pRenderer);
             }
@@ -173,7 +186,7 @@ void CollisionMurBalle (tBalle *bBalle,SDL_Rect rRenderRect)
 
 void MouvementIA(tRaquette *rRaquette,tBalle bBalle)
 {
-    const int VITESSEIA=1;
+    const int VITESSEIA=2;
     if (bBalle.cCercle.pCentre.nY > rRaquette->rRectangle.pOrigine.nY - (rRaquette->rRectangle.nHauteur/2))
     {
         rRaquette->rRectangle.pOrigine.nY=rRaquette->rRectangle.pOrigine.nY+VITESSEIA;
@@ -188,9 +201,9 @@ void ReapparitionBalle(tBalle *bBalle, int nJoueur, SDL_Rect rRenderRect)
 {
     bBalle->cCercle.pCentre.nX=rRenderRect.w/2;
     bBalle->cCercle.pCentre.nY=rRenderRect.h/2;
-    bBalle->vDirection.nDirectionY=-3;
+    bBalle->vDirection.nDirectionY=-4;
     if (nJoueur==1)
-        bBalle->vDirection.nDirectionX=-3;
+        bBalle->vDirection.nDirectionX=-4;
     else
-        bBalle->vDirection.nDirectionX=3;
+        bBalle->vDirection.nDirectionX=4;
 }

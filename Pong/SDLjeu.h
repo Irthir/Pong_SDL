@@ -7,6 +7,7 @@
 #include "SDLballe.h"
 #include "SDLsprite.h"
 #include "SDLraquette.h"
+#include "SDLtexte.h"
 
 extern int sdljeu();
 extern void AfficheBalle(tBalle bBalle, SDLManager *pManager);
