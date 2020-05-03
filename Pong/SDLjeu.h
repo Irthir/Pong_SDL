@@ -10,6 +10,11 @@
 
 extern int sdljeu();
 extern void AfficheBalle(tBalle bBalle, SDLManager *pManager);
-void AfficheRaquette(tRaquette rRaquette, SDLManager *pManager);
+extern void AfficheRaquette(tRaquette rRaquette, SDLManager *pManager);
+extern int Collision(tBalle bBalle, tRaquette rRaquette);
+
+extern void MouvementBalle(tBalle *bBalle);
+extern void CollisionMurBalle (tBalle *bBalle,SDL_Rect rRenderRect);
+extern void CollisionMurJoueur(tRaquette *rRaquette,SDL_Rect rRenderRect);
 
 #endif

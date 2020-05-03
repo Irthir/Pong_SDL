@@ -3,8 +3,8 @@
 #pragma once
 
 #include "SDL2/SDL.h"
+#include "SDLraquette.h"
 
-
-extern int inputSDL(SDL_Event Evenement,int nFonctionnement);
+extern int inputSDL(SDL_Event Evenement,int nFonctionnement,tRaquette *rRaquetteJ1);
 
 #endif

@@ -30,7 +30,7 @@ int sdljeu()
         //On veut que la balle soit comprise dans un carré qui a pour côté 1/40 de la largeur de l'écran.
         const int DIAMETTREBALLE = rRenderRect.w/40;
 
-        tBalle bBalle=CreatBalle(CreatCercle(CreatPoint(rRenderRect.w/2,rRenderRect.h/2),DIAMETTREBALLE/2),CreatVecteur2D(CreatSegment(CreatPoint(0,0),CreatPoint(0,0)),CreatSegment(CreatPoint(0,0),CreatPoint(0,0))),pManager);
+        tBalle bBalle=CreatBalle(CreatCercle(CreatPoint(rRenderRect.w/2,rRenderRect.h/2),DIAMETTREBALLE/2),CreatVecteur2D(-3,3),pManager);
         tRaquette rRaquetteJ1=CreatRaquette(CreatRect(CreatPoint(0,(rRenderRect.h-HAUTEURRAQUETTE)/2),HAUTEURRAQUETTE,LARGEURRAQUETTE),pManager,1);
         tRaquette rRaquetteJ2=CreatRaquette(CreatRect(CreatPoint(rRenderRect.w-LARGEURRAQUETTE,(rRenderRect.h-HAUTEURRAQUETTE)/2),HAUTEURRAQUETTE,LARGEURRAQUETTE),pManager,2);
 
@@ -43,11 +43,24 @@ int sdljeu()
                 SDL_RenderClear(pManager->pRenderer);
 
                 nTempsPrecedent = nTempsActuel;
-                nFonctionnement=inputSDL(Evenement,nFonctionnement);
+                nFonctionnement=inputSDL(Evenement,nFonctionnement,&rRaquetteJ1);
 
-                AfficheBalle(bBalle,pManager);
+                CollisionMurJoueur(&rRaquetteJ1,rRenderRect);
+                CollisionMurJoueur(&rRaquetteJ2,rRenderRect);
+
+                MouvementBalle(&bBalle);
+
+                CollisionMurBalle (&bBalle,rRenderRect);
+
+                if(Collision(bBalle,rRaquetteJ1)==1 || Collision(bBalle,rRaquetteJ2)==1)
+                {
+                     bBalle.vDirection.nDirectionX=bBalle.vDirection.nDirectionX*-1;
+                }
+
+
                 AfficheRaquette(rRaquetteJ1,pManager);
                 AfficheRaquette(rRaquetteJ2,pManager);
+                AfficheBalle(bBalle,pManager);
 
                 SDL_RenderPresent(pManager->pRenderer);
             }
@@ -83,4 +96,58 @@ void AfficheRaquette(tRaquette rRaquette, SDLManager *pManager)
     destRect.x=rRaquette.rRectangle.pOrigine.nX;
     destRect.y=rRaquette.rRectangle.pOrigine.nY;
     SDL_RenderCopy(pManager->pRenderer,rRaquette.pTexture,NULL,&destRect);
+}
+
+int Collision(tBalle bBalle, tRaquette rRaquette)
+{
+    if (bBalle.cCercle.pCentre.nY-bBalle.cCercle.nRayon<rRaquette.rRectangle.pOrigine.nY)
+    {
+        return 0;
+    }
+    if (bBalle.cCercle.pCentre.nY+bBalle.cCercle.nRayon>rRaquette.rRectangle.pOrigine.nY+rRaquette.rRectangle.nHauteur)
+    {
+        return 0;
+    }
+    if (bBalle.cCercle.pCentre.nX+bBalle.cCercle.nRayon<rRaquette.rRectangle.pOrigine.nX)
+    {
+        return 0;
+    }
+    if (bBalle.cCercle.pCentre.nX-bBalle.cCercle.nRayon>rRaquette.rRectangle.pOrigine.nX+rRaquette.rRectangle.nLargeur)
+    {
+        return 0;
+    }
+    return 1;
+}
+
+void CollisionMurJoueur(tRaquette *rRaquette,SDL_Rect rRenderRect)
+{
+    if (rRaquette->rRectangle.pOrigine.nY+rRaquette->rRectangle.nHauteur>rRenderRect.h)
+    {
+        rRaquette->rRectangle.pOrigine.nY=rRenderRect.h-rRaquette->rRectangle.nHauteur;
+    }
+    if (rRaquette->rRectangle.pOrigine.nY<0)
+    {
+        rRaquette->rRectangle.pOrigine.nY=0;
+    }
+}
+
+
+void MouvementBalle(tBalle *bBalle)
+{
+    bBalle->cCercle.pCentre.nX = bBalle->cCercle.pCentre.nX+bBalle->vDirection.nDirectionX;
+    bBalle->cCercle.pCentre.nY = bBalle->cCercle.pCentre.nY+bBalle->vDirection.nDirectionY;
+}
+
+void CollisionMurBalle (tBalle *bBalle,SDL_Rect rRenderRect)
+{
+    if (bBalle->cCercle.pCentre.nY+bBalle->cCercle.nRayon>=rRenderRect.h)
+    {
+        bBalle->cCercle.pCentre.nY=rRenderRect.h-bBalle->cCercle.nRayon;
+        bBalle->vDirection.nDirectionY=bBalle->vDirection.nDirectionY*-1;
+    }
+    if (bBalle->cCercle.pCentre.nY-bBalle->cCercle.nRayon<=0)
+    {
+        bBalle->cCercle.pCentre.nY=0+bBalle->cCercle.nRayon;
+        bBalle->vDirection.nDirectionY=bBalle->vDirection.nDirectionY*-1;
+    }
 }

@@ -1,7 +1,8 @@
 #include "SDLinput.h"
 
+const int VITESSEJOUEUR=15;
 
-int inputSDL(SDL_Event Evenement,int nFonctionnement)
+int inputSDL(SDL_Event Evenement,int nFonctionnement,tRaquette *rRaquetteJ1)
 //BUT : Gérer les évènements du jeu.
 //ENTREE : Les évènements et les paramètres à modifier et à renvoyer en fonction des évènements.
 //SORTIE : Les paramètres modifiés et renvoyés en fonction des évènements.
@@ -15,6 +16,12 @@ int inputSDL(SDL_Event Evenement,int nFonctionnement)
                 {
                     case SDLK_ESCAPE :
                         nFonctionnement=0;
+                        break;
+                    case SDLK_UP :
+                        rRaquetteJ1->rRectangle.pOrigine.nY=rRaquetteJ1->rRectangle.pOrigine.nY-VITESSEJOUEUR;
+                        break;
+                    case SDLK_DOWN :
+                        rRaquetteJ1->rRectangle.pOrigine.nY=rRaquetteJ1->rRectangle.pOrigine.nY+VITESSEJOUEUR;
                         break;
                     default :
                         break;
