@@ -60,6 +60,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="SDLaffichage.h" />
+		<Unit filename="SDLballe.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="SDLballe.h" />
 		<Unit filename="SDLinput.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -72,18 +76,18 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="SDLmanager.h" />
+		<Unit filename="SDLsprite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="SDLsprite.h" />
 		<Unit filename="SDLtexte.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="SDLtexte.h" />
-		<Unit filename="balle.c">
+		<Unit filename="Scriptes inutiles pour l&apos;instant/cercle.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="balle.h" />
-		<Unit filename="cercle.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="cercle.h" />
+		<Unit filename="Scriptes inutiles pour l&apos;instant/cercle.h" />
 		<Unit filename="gamemanager.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -111,6 +115,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="scoremanager.h" />
+		<Unit filename="segment.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="segment.h" />
 		<Unit filename="terrain.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -119,6 +127,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="test.h" />
+		<Unit filename="vecteur2D.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="vecteur2D.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
